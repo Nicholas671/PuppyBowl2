@@ -1,8 +1,17 @@
+header {
+  background-color: #80b25f;
+  color: inherit;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #bef3b4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +19,13 @@ body {
   color: #3c6b1d;
 }
 
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: #2c3627;
+}
 
 main {
   display: grid;

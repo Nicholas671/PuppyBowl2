@@ -177,6 +177,7 @@ const renderNewPlayerForm = () => {
       };
       await addNewPlayer(newPlayer);
       const players = await fetchAllPlayers();
+      alert(`${newPlayer.name} has been added to the roster!`);
       renderAllPlayers(players);
       form.reset();
     } catch (err) {

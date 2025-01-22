@@ -20,7 +20,7 @@ const fetchAllPlayers = async () => {
     console.error("Uh oh, trouble fetching players!", err);
   }
 };
-
+console.log(fetchAllPlayers());
 /**
  * Fetches a single player from the API.
  * @param {number} playerId
@@ -117,13 +117,13 @@ const renderAllPlayers = (playerList) => {
   playerList.forEach((player) => {
     const playerCard = document.createElement("div");
     playerCard.classList.add("player-card");
-    playerCard.innerHTML = `
-<h2>${player.name}</h2>
-<p>Player ID: ${player.id}</p>
-<img src="${player.imageUrl}" alt="${player.name}">
-<button class="dtlBtn" data-id="${player.id}">See Puppy Details</button>
-<button class="rmvBtn" data-id="${player.id}">Remove Puppy</button>
-`;
+    playerCard.innerHTML =
+      `<h2>${player.name}</h2>
+        <p>Player ID: ${player.id}</p>
+        <img src="${player.imageUrl}" alt="${player.name}">
+        <button class="dtlBtn" data-id="${player.id}">See Puppy Details</button>
+        <button class="rmvBtn" data-id="${player.id}">Remove Puppy</button>
+        `;
     main.appendChild(playerCard);
   });
 
@@ -162,10 +162,10 @@ const renderAllPlayers = (playerList) => {
 const renderNewPlayerForm = () => {
   const form = document.getElementById("new-player-form");
   form.innerHTML = `
-  <input type="text" id="name" name="name" placeholder="Puppy Name" required>
-  <input type="text" id="breed" name="breed" placeholder="Puppy Breed" required>
-  <input type="url" id="image" name="image" placeholder="Puppy Image" required>
-  <button type="submit">Add New Player</button>`;
+        <input type="text" id="name" name="name" placeholder="Puppy Name" required>
+        <input type="text" id="breed" name="breed" placeholder="Puppy Breed" required>
+        <input type="url" id="image" name="image" placeholder="Puppy Image" required>
+        <button type="submit">Add New Player</button>`;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();

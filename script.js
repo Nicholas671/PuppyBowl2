@@ -51,7 +51,7 @@ const addNewPlayer = async (playerObj) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(playerObj)
+      body: JSON.stringify(playerObj),
     });
     if (!objectResponse.ok) {
       throw new Error(`HTTP error! status: ${objectResponse.status}`);
@@ -109,14 +109,10 @@ const removePlayer = async (playerId) => {
 const renderAllPlayers = (playerList) => {
   const main = document.querySelector("main");
   main.innerHTML = "";
-
-  //if statement for list length
-
   if (!playerList.length) {
     main.innerHTML = "<p>No players found!</p>";
     return;
   }
-
   //create a card for each player
   playerList.forEach((player) => {
     const playerCard = document.createElement("div");
@@ -144,38 +140,36 @@ const renderAllPlayers = (playerList) => {
   const rmvBtn = document.querySelectorAll(".rmvBtn");
   rmvBtn.forEach((button) => {
     button.addEventListener("click", async () => {
-      const confirmation = confirm("Are you sure you want to remove this player?");
-      if (confirmation) {
-        await removePlayer(button.dataset.id);
-        const players = await fetchAllPlayers();
-        renderAllPlayers(players);
+      const firstConfirm = confirm("Are you sure you want to remove this Puppy?");
+      if (firstConfirm) {
+        const secondConfirm = confirm("Are you really sure?");
+        if (secondConfirm) {
+          await removePlayer(button.dataset.id);
+          const players = await fetchAllPlayers();
+          renderAllPlayers(players);
+          alert("You really are Heartless!");
+        }
       }
     });
   });
-
-
-
 };
+
 /**
  * Fills in `<form id="new-player-form">` with the appropriate inputs and a submit button.
  * When the form is submitted, it should call `addNewPlayer`, fetch all players,
  * and then render all players to the DOM.
  */
 const renderNewPlayerForm = () => {
-  try {
-    const form = document.getElementById("new-player-form");
-    form.innerHTML = `
-     
-      <input type="text" id="name" name="name" placeholder="Puppy Name" required>
-         
-    
-      <input type="text" id="breed" name="breed" placeholder="Puppy Breed" required>
-  
-      <input type="url" id="image" name="image" placeholder="Puppy Image" required>
-      <button type="submit">Add New Player</button>`;
+  const form = document.getElementById("new-player-form");
+  form.innerHTML = `
+  <input type="text" id="name" name="name" placeholder="Puppy Name" required>
+  <input type="text" id="breed" name="breed" placeholder="Puppy Breed" required>
+  <input type="url" id="image" name="image" placeholder="Puppy Image" required>
+  <button type="submit">Add New Player</button>`;
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
       const newPlayer = {
         name: form.name.value,
         breed: form.breed.value,
@@ -185,14 +179,11 @@ const renderNewPlayerForm = () => {
       const players = await fetchAllPlayers();
       renderAllPlayers(players);
       form.reset();
-    });
-  } catch (err) {
-    console.error("Uh oh, trouble rendering the new player form!", err);
-  }
+    } catch (err) {
+      console.error("Uh oh, trouble rendering the new player form!", err);
+    }
+  });
 };
-
-
-
 
 /**
  * Updates `<main>` to display a single player.
@@ -208,7 +199,7 @@ const renderNewPlayerForm = () => {
  * @param {Object} player an object representing a single player
  */
 const renderSinglePlayer = (player) => {
-  constplayerDetails = document.querySelector("#playerDetails");
+  const playerDetails = document.querySelector("#playerDetails");
   playerDetails.innerHTML = `
     <h2>${player.name}</h2>
     <p>Player ID: ${player.id}</p>
@@ -221,13 +212,14 @@ const renderSinglePlayer = (player) => {
   modal.style.display = "block";
   span.onclick = () => {
     modal.style.display = "none";
-  }
+  };
   window.onclick = (event) => {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
     }
   };
 };
+
 /**
  * Initializes the app by fetching all players and rendering them to the DOM.
  */

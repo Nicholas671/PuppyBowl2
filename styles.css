@@ -1,0 +1,111 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px;
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+button {
+  background: linear-gradient(17.5deg, rgb(151, 124, 7), #46cf9d);
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 12px 21px;
+  color: white;
+  font-size: 16px;
+  border-radius: 2px;
+
+}
+
+button:hover {
+  background: linear-gradient(17.5deg, #46cf9d, rgb(151, 124, 7));
+  cursor: pointer;
+}
+
+#new-player-form {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+.player-card {
+  background-color: bisque;
+  border: 3px solid #e8adad;
+  box-shadow: 2px 1px 5px;
+  padding: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.player-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5%;
+  box-shadow: tomato 2px 2px 2px;
+
+}
+
+/* The Modal (background) */
+/* This will sit on top of everything else with the ability to scroll */
+/* The background will be black opaque */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: bisque;
+  margin: 15% auto;
+  padding: 20px;
+  border: 3px solid #e8adad;
+  box-shadow: 0 5px 5px #3c2323;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* Scale the image within the popup */
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
